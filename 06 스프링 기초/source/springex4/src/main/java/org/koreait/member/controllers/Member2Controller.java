@@ -1,16 +1,14 @@
-package org.koreait.global.member.controllers;
+package org.koreait.member.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/member")
-public class MemberController {
+@RequestMapping("/member2")
+public class Member2Controller {
 
     @GetMapping // /member
     public String index() {
@@ -24,9 +22,10 @@ public class MemberController {
     }
 
     @PostMapping("/join") // /member/join
-    public String joinPs(RequestJoin form) {
+    public String joinPs(RequestJoin3 form, Model model) { // requestJoin
         System.out.println(form);
-        return "member/join_ps";
+        // model.addAttribute("reqeustJoin",form);
+        return "member/join";
     }
 
     /*
@@ -48,7 +47,7 @@ public class MemberController {
     public String joinPage(@RequestParam("agree") boolean agree, @RequestParam("email") String email, Model model) {
         System.out.printf("agree:%s, email:%s%n", agree, email);
         model.addAttribute("message", "안녕하세요.");
-        return "member/join"; // /WEB-INF/templates/member/join.jsp -> ModelAndView 변환
+        return "member/join"; // /WEB-INF/templates/member/join2.jsp -> ModelAndView 변환
     }
     */
 
