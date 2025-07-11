@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/v1/member")
 public class MemberController {
@@ -16,21 +14,42 @@ public class MemberController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void join(@RequestBody @Valid RequestJoin form, Errors errors) {
         if (errors.hasErrors()) {
-            List<String> errorMessages = errors.getFieldErrors().stream().map(e -> e.getDefaultMessage()).toList();
             throw new BadRequestException(errors);
+
         }
-        // return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        // return ResponseEntity.noContent().build();
+
+        System.out.println(form);
     }
 
-//    @PostMapping("/join")
+    @PostMapping("/join2")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void join2(@Valid RequestJoin form, Errors errors) {
+        if (errors.hasErrors()) {
+            throw new BadRequestException(errors);
+
+        }
+
+        System.out.println(form);
+    }
+
+    @PatchMapping("/join3")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void join3(@Valid RequestJoin form, Errors errors) {
+        if (errors.hasErrors()) {
+            throw new BadRequestException(errors);
+
+        }
+
+        System.out.println(form);
+    }
 //    public ResponseEntity<Object> join(@RequestBody @Valid RequestJoin form, Errors errors) {
 //        if (errors.hasErrors()) {
-//            List<String> errorMessages = errors.getFieldErrors().stream().map(e -> e.getDefaultMessage()).toList();
-//            // return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessages);
-//            return ResponseEntity.badRequest().body(errorMessages);
+//            List<String> errorMessags = errors.getFieldErrors().stream().map(e -> e.getDefaultMessage()).toList();
+//            //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessags);
+//            return ResponseEntity.badRequest().body(errorMessags);
 //        }
-//        // return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+//
+//        //return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 //        return ResponseEntity.noContent().build();
 //    }
 
@@ -41,6 +60,7 @@ public class MemberController {
             throw new IllegalArgumentException("잘못된 요청...");
         }
     }
+
 
 
 //    public ResponseEntity<Object> join(@RequestBody @Valid RequestJoin form, Errors errors) {
