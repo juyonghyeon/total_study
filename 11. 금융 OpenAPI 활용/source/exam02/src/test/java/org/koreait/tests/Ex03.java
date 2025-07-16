@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 @Transactional
 @SpringBootTest
 public class Ex03 {
-
-
     @PersistenceContext
     private EntityManager em;
 
@@ -31,15 +29,17 @@ public class Ex03 {
 
         member = em.find(Member.class, 1L);
         // 최초 추가시
-        System.out.printf("createdAt:%s, modifiedAt%s%n", member.getCreatedAt(), member.getModifiedAt());
+        System.out.printf("createdAt:%s, modifiedAt:%s%n", member.getCreatedAt(), member.getModifiedAt());
+
         Thread.sleep(5000);
 
         member.setName("(수정)사용자01");
+        member.setCreatedAt(LocalDateTime.now());
         em.flush();
         em.clear();
 
         // 수정 후
         member = em.find(Member.class, 1L);
-        System.out.printf("createdAt:%s, modifiedAt%s%n", member.getCreatedAt(), member.getModifiedAt());
+        System.out.printf("createdAt:%s, modifiedAt:%s%n", member.getCreatedAt(), member.getModifiedAt());
     }
 }
